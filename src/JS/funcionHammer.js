@@ -10,8 +10,8 @@ function hiddenToggler() {
 
 function devuelveEstado(e) {
   const focus = e.target;
+  const divLetras = document.querySelectorAll(".letter");
   if (focus.classList.contains("letter")) {
-    const divLetras = document.querySelectorAll(".letter");
     let coordsElegidas = focus.style.gridArea.split("/");
     const coordX = coordsElegidas[0].trim();
     const coordY = coordsElegidas[1].trim();
@@ -28,15 +28,12 @@ function devuelveEstado(e) {
 
     divLetras.forEach((letra) => {
       letra.classList.remove("on-top");
-      //   letra.removeEventListener("click", devuelveEstado);
     });
     hiddenToggler();
     document.removeEventListener("mousedown", devuelveEstado);
   } else {
-    const divLetras = document.querySelectorAll(".letter"); //ESTO SE REPITE, GLOBALES?¿
     divLetras.forEach((letra) => {
       letra.classList.remove("on-top");
-      //   letra.removeEventListener("click", devuelveEstado);
     });
     hiddenToggler();
     document.removeEventListener("mousedown", devuelveEstado);
@@ -47,7 +44,6 @@ function letrasOnTop() {
   const divLetras = document.querySelectorAll(".letter");
   divLetras.forEach((letra) => {
     letra.classList.add("on-top");
-    // letra.addEventListener("click", devuelveEstado);
   });
   document.addEventListener("mousedown", devuelveEstado);
 }

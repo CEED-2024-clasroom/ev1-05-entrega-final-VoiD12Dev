@@ -25,8 +25,8 @@ function posicionInicial(casillas) {
   return center(maxY, maxX, 10, 10);
 }
 
-function ponerCasillas(arrayCasillas) {
-  let [posInicialX, posInicialY] = posicionInicial(arrayCasillas);
+function ponerCasillas(wordPositions) {
+  let [posInicialX, posInicialY] = posicionInicial(wordPositions);
 
   if (posInicialX < 0 || posInicialY < 0) {
     posInicialX = 0;
@@ -35,8 +35,8 @@ function ponerCasillas(arrayCasillas) {
 
   const posicionesUsadas = new Set();
 
-  arrayCasillas.forEach((_, key) => {
-    let { origin, direction, length } = arrayCasillas[key];
+  wordPositions.forEach((_, key) => {
+    let { origin, direction, length } = wordPositions[key];
     //He clonado el array por que me modificaba el original
     let origen = [...origin];
 

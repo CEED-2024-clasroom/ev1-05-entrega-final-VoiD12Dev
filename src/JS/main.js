@@ -15,12 +15,7 @@ const botonHint = document.querySelector(".tool .fa-lightbulb").parentElement;
 const botonHint5 = document.querySelector(".tool .fa-expand").parentElement;
 const botonHammer = document.querySelector(".tool .fa-hammer").parentElement;
 
-function seleccionAleatorio(min, max) {
-  return Math.random() * (max - min) + min;
-}
-
-const juegoAleatorio = Math.floor(seleccionAleatorio(0, 6));
-const game = new Game(juegoAleatorio); //Obtenemos las palabras del juego
+const game = new Game(); //Obtenemos las palabras del juego
 const wordPositions = game.wordPositions; //Array de objetos de las palabras
 const gameLetters = game.letters; //Letras del crucigrama
 const coordIniciales = posicionInicial(wordPositions); // coordenadas iniciales
@@ -53,15 +48,18 @@ botonHammer.addEventListener("click", () => {
 const divRueda = document.querySelector("#wheel-container");
 divRueda.addEventListener("mouseup", () => {
   const palabra = getPalabra();
-  const posicion = game.findWord(palabra);
-  pintaLetras(posicion, palabra, coordIniciales);
+  try {
+    const posicion = game.findWord(palabra);
+    pintaLetras(posicion, palabra, coordIniciales);
+  } catch (error) {
+    window.alert(error.message);
+  }
 });
 
 /**
  * Aqui se crea la linea y se añade 'selected' al div de las letras
  * Tambien recoge las letras en un array que devuleve en la funcion get
  */
-
 const divLetras = document.querySelectorAll(".wheel-letter");
 divLetras.forEach((div) => {
   div.addEventListener("mousedown", presionaLetra);
